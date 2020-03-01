@@ -16,6 +16,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     var topSafeArea: CGFloat = 0
     
+    let headerView = CharacterListView()
+    
     let tableView: UITableView = {
         let tv = UITableView()
         tv.bounces = false
@@ -42,11 +44,17 @@ class MainViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ComicsViewCell.self, forCellReuseIdentifier: "ComicsViewCell")
+
+        headerView.delegate = self
         
         viewModel.fetchCharactersData { (characters) in
             self.characters = characters
-            DispatchQueue.main.async {
-                self.setupViews()
+            if let characters = characters {
+                DispatchQueue.main.async {
+                    self.headerView.characters = characters
+                    self.headerView.initViews()
+                    self.setupViews()
+                }
             }
         }
     }
@@ -63,22 +71,25 @@ class MainViewController: UIViewController, UITableViewDelegate {
 extension MainViewController: UITableViewDataSource, CharacterListViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = CharacterListView()
-        headerView.delegate = self
-        headerView.characters = self.characters ?? [CharacterItem]()
-        return headerView
+        if section == 0 {
+            return headerView
+        } else {
+            let headerView = CharacterTitleView()
+            headerView.title.text = characters?[selectedCharId].name ?? ""
+            return headerView
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return section == 0 ? 100 : 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters?[selectedCharId].comics.items.count ?? 0
+        return section == 0 ? 0 : characters?[selectedCharId].comics.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,7 +109,7 @@ extension MainViewController: UITableViewDataSource, CharacterListViewDelegate {
     func characterSelected(id: Int) {
         print("characterSelected: \(id)")
         selectedCharId = id
-        //self.tableView.reloadSections([0], with: .fade)
+        self.tableView.reloadSections([1], with: .fade)
     }
     
 }

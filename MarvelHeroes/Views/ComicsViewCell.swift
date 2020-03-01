@@ -44,7 +44,7 @@ class ComicsViewCell: UITableViewCell {
         self.addSubview(comicsImage)
         comicsImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         comicsImage.heightAnchor.constraint(equalToConstant: 160).isActive = true
-        NSLayoutConstraint(item: comicsImage, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 5).isActive = true
+        NSLayoutConstraint(item: comicsImage, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 10).isActive = true
         NSLayoutConstraint(item: comicsImage, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
         
         self.addSubview(titleLabel)

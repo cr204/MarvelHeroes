@@ -40,8 +40,6 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
-        
-        self.initViews()
     }
     
     required init?(coder: NSCoder) {
@@ -50,13 +48,13 @@ class CharacterListView: UIView, UICollectionViewDelegate {
     
     
     
-    private func initViews() {
+    func initViews() {
         self.addSubview(collectionView)
         self.addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         self.addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
     
         if self.prevSelected == nil {
-            self.perform(#selector(performAction), with: nil, afterDelay: 3.0)
+            self.perform(#selector(performAction), with: nil, afterDelay: 0.3)
         }
     }
     
