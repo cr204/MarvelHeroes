@@ -10,7 +10,7 @@ import Foundation
 
 class MainViewModel {
     
-    func fetchCharactersData() {
+    func fetchCharactersData(completion: @escaping ([CharacterItem]?) -> Void) {
         
         getJSON(urlString: Links.characterList) { (charactersData: CharactersData?) in
             print("Data Loaded!")
@@ -24,15 +24,9 @@ class MainViewModel {
             }
             
             if let data = charactersData?.data {
-                
-                for characterItem in data.results {
-                    print(characterItem.name + "   - " + characterItem.imageURL)
-                }
-
-                
+                completion(data.results)
             }
         }
-        
     }
     
     
