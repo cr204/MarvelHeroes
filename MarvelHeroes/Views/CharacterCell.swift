@@ -17,7 +17,6 @@ class CharacterCell: UICollectionViewCell {
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
-
     
     let imgSelected: UIView = {
         let view = UIView()

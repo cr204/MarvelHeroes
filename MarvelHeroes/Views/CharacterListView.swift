@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol CharacterListViewDelegate: class {
+    func characterSelected(id: Int)
+}
+
 class CharacterListView: UIView, UICollectionViewDelegate {
     
     var characters: [CharacterItem] = []
-    private var prevSelected = CharacterCell()
+    private var prevSelected: CharacterCell?
+    weak var delegate: CharacterListViewDelegate?
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,11 +54,20 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         self.addSubview(collectionView)
         self.addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         self.addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
-        
-        // TODO: Set first cell selected
-//        let cell  = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! CharacterCell
-//        cell.isSelected(true)
+    
+        if self.prevSelected == nil {
+            self.perform(#selector(performAction), with: nil, afterDelay: 3.0)
+        }
     }
+    
+    @objc private func performAction() {
+        let cell  = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! CharacterCell
+        cell.isSelected(true)
+        prevSelected = cell
+        delegate?.characterSelected(id: 0)
+    }
+    
+    
     
 
 }
@@ -80,11 +94,11 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
         if prevSelected === cell {
             return
         } else {
-            prevSelected.isSelected(false)
+            prevSelected?.isSelected(false)
         }
         cell.isSelected(true)
         prevSelected = cell
-        print(indexPath.item)
+        delegate?.characterSelected(id: indexPath.item)
     }
     
     // line spacing for vertical

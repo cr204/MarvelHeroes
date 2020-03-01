@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A08E4B4240C0F2900AEEECA /* ComicsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */; };
+		5A08E4B6240C35BE00AEEECA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B5240C35BE00AEEECA /* NetworkService.swift */; };
 		5A17A0FD240A882600297C35 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A17A0FC240A882600297C35 /* Links.swift */; };
 		5A17A0FF240A8EE700297C35 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A17A0FE240A8EE700297C35 /* MainViewModel.swift */; };
 		5A2E81A0240A96A900718478 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2E819F240A96A900718478 /* Extensions.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewCell.swift; sourceTree = "<group>"; };
+		5A08E4B5240C35BE00AEEECA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5A17A0FC240A882600297C35 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		5A17A0FE240A8EE700297C35 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5A2E819F240A96A900718478 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -56,7 +60,7 @@
 			children = (
 				5A2E81A1240A9C2900718478 /* CharacterListView.swift */,
 				5A9EABC7240B7B7E0048A20F /* CharacterCell.swift */,
-				5A9EABCC240BD8230048A20F /* CustomImageView.swift */,
+				5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -75,6 +79,7 @@
 				5A17A0FC240A882600297C35 /* Links.swift */,
 				5A9EABC9240B84CC0048A20F /* Colors.swift */,
 				5A2E819F240A96A900718478 /* Extensions.swift */,
+				5A9EABCC240BD8230048A20F /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 				5AA59D5D2408F286007FCAFD /* SceneDelegate.swift */,
 				5AA59D6F240938A9007FCAFD /* MainViewController.swift */,
 				5A17A0FE240A8EE700297C35 /* MainViewModel.swift */,
+				5A08E4B5240C35BE00AEEECA /* NetworkService.swift */,
 				5A2E81A3240A9C3600718478 /* Views */,
 				5A2E81A4240A9C5600718478 /* Model */,
 				5A9EABCB240BD7FA0048A20F /* Utils */,
@@ -182,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A08E4B4240C0F2900AEEECA /* ComicsViewCell.swift in Sources */,
 				5A17A0FD240A882600297C35 /* Links.swift in Sources */,
 				5A9EABCA240B84CC0048A20F /* Colors.swift in Sources */,
 				5AA59D5C2408F286007FCAFD /* AppDelegate.swift in Sources */,
@@ -192,6 +199,7 @@
 				5A9EABCD240BD8230048A20F /* CustomImageView.swift in Sources */,
 				5A17A0FF240A8EE700297C35 /* MainViewModel.swift in Sources */,
 				5A2E81A2240A9C2900718478 /* CharacterListView.swift in Sources */,
+				5A08E4B6240C35BE00AEEECA /* NetworkService.swift in Sources */,
 				5A2E81A0240A96A900718478 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
