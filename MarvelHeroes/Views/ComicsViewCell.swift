@@ -10,10 +10,20 @@ import UIKit
 
 class ComicsViewCell: UITableViewCell {
     
-    var comicsItem: ComicsItem? {
+//    var comicsItem: ComicsItem? {
+//        didSet {
+//            self.titleLabel.text = self.comicsItem?.name ?? ""
+//            self.descLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+//            self.initViews()
+//        }
+//    }
+    
+    var comicsDetailsItem: ComicsDetailsItem? {
         didSet {
-            self.titleLabel.text = self.comicsItem?.name ?? ""
-            self.descLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            self.titleLabel.text = self.comicsDetailsItem?.title ?? ""
+            self.descLabel.text = self.comicsDetailsItem?.description ?? "No description"
+            self.comicsImage.loadImageUsingURLString(urlString: self.comicsDetailsItem?.imageURL ?? "", fade: false, centerFit: true,cornerRadius: 10)
+//            print("Comics image: \(self.comicsDetailsItem?.imageURL ?? "")")
             self.initViews()
         }
     }
@@ -38,7 +48,7 @@ class ComicsViewCell: UITableViewCell {
     
     let descLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 4
         label.textAlignment = .justified
         label.textColor = Colors.textGray
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)

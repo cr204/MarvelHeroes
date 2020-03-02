@@ -10,6 +10,8 @@ import Foundation
 
 class MainViewModel {
     
+    var comicsDetails: Box<[ComicsDetailsItem]?> = Box(nil)
+    
     func fetchCharactersData(completion: @escaping ([CharacterItem]?) -> Void) {
         
         NetworkService.getJSON(urlString: Links.characterList) { (charactersData: CharactersData?) in
@@ -34,7 +36,7 @@ class MainViewModel {
 extension MainViewModel: CharacterListViewDelegate {
         
     func characterSelected(uri: URL) {
-        print("characterSelectedURI: \(uri)")
+//        print("characterSelectedURI: \(uri)")
         
         NetworkService.getJSON(urlString: uri.absoluteString) { (detailsData: ComicsDetailsData?) in
             print("Details Data Loaded!")
@@ -49,7 +51,8 @@ extension MainViewModel: CharacterListViewDelegate {
             
             if let data = detailsData?.data {
                 //completion(data.results)
-                print(data.count)
+                //print(data.count)
+                self.comicsDetails.value = data.results
             }
         }
         
@@ -57,7 +60,7 @@ extension MainViewModel: CharacterListViewDelegate {
     
     
     func characterSelected(id: Int) {
-        //
+        //print(id)
     }
 
     

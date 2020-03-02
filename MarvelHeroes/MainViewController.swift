@@ -12,6 +12,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
 
     private var viewModel = MainViewModel()
     private var characters: [CharacterItem]?
+    private var comicsDetails: [ComicsDetailsItem]?
     private var selectedCharId: Int = 0
     
     var topSafeArea: CGFloat = 0
@@ -57,6 +58,15 @@ class MainViewController: UIViewController, UITableViewDelegate {
                 }
             }
         }
+        
+        viewModel.comicsDetails.bind {
+            self.comicsDetails = $0
+            DispatchQueue.main.async {
+                self.tableView.reloadSections([1], with: .fade)
+            }
+        }
+        
+        
     }
     
     private func setupViews() {
@@ -89,12 +99,12 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 0 : characters?[selectedCharId].comics.items.count ?? 0
+        return section == 0 ? 0 : comicsDetails?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsViewCell", for: indexPath) as! ComicsViewCell
-        cell.comicsItem = characters?[selectedCharId].comics.items[indexPath.row]
+        cell.comicsDetailsItem = comicsDetails?[indexPath.row]
         return cell
     }
     
@@ -102,13 +112,6 @@ extension MainViewController: UITableViewDataSource {
         return 180
     }
     
-    
-//    // MARK: Other methods
-//    func characterSelected(id: Int) {
-//        selectedCharId = id
-//        print(characters?[id].resourceURI)
-//        self.tableView.reloadSections([1], with: .fade)
-//    }
-    
+        
 }
 

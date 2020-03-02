@@ -63,6 +63,7 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         let cell  = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! CharacterCell
         cell.isSelected(true)
         prevSelected = cell
+        delegate?.characterSelected(id: 0)
         delegate?.characterSelected(uri: characters[0].comics.collectionURI)
     }
     
