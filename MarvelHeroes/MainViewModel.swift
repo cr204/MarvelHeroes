@@ -37,7 +37,6 @@ class MainViewModel {
 extension MainViewModel: CharacterListViewDelegate {
         
     func characterSelected(id: Int, uri: URL) {
-//        print("characterSelectedURI: \(uri)")
         
         NetworkService.getJSON(urlString: uri.absoluteString) { (detailsData: ComicsDetailsData?) in
             

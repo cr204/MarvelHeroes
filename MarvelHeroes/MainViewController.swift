@@ -21,7 +21,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     let tableView: UITableView = {
         let tv = UITableView()
-        tv.bounces = false
+        tv.bounces = true
         tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
@@ -112,6 +112,13 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180
     }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let comicsDetails = comicsDetails else { return }
+//        if indexPath.row == comicsDetails.count - 1 {
+//            print("Load more data")
+//        }
+//    }
     
         
 }

@@ -10,7 +10,6 @@
 		5A08E4B4240C0F2900AEEECA /* ComicsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */; };
 		5A08E4B6240C35BE00AEEECA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B5240C35BE00AEEECA /* NetworkService.swift */; };
 		5A08E4B8240C3FF400AEEECA /* CharacterTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B7240C3FF400AEEECA /* CharacterTitleView.swift */; };
-		5A08E4BA240C567400AEEECA /* ComicsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08E4B9240C567400AEEECA /* ComicsCellViewModel.swift */; };
 		5A17A0FD240A882600297C35 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A17A0FC240A882600297C35 /* Links.swift */; };
 		5A17A0FF240A8EE700297C35 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A17A0FE240A8EE700297C35 /* MainViewModel.swift */; };
 		5A2E81A0240A96A900718478 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2E819F240A96A900718478 /* Extensions.swift */; };
@@ -31,7 +30,6 @@
 		5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewCell.swift; sourceTree = "<group>"; };
 		5A08E4B5240C35BE00AEEECA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5A08E4B7240C3FF400AEEECA /* CharacterTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTitleView.swift; sourceTree = "<group>"; };
-		5A08E4B9240C567400AEEECA /* ComicsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCellViewModel.swift; sourceTree = "<group>"; };
 		5A17A0FC240A882600297C35 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		5A17A0FE240A8EE700297C35 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5A2E819F240A96A900718478 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				5AA59D5D2408F286007FCAFD /* SceneDelegate.swift */,
 				5AA59D6F240938A9007FCAFD /* MainViewController.swift */,
 				5A17A0FE240A8EE700297C35 /* MainViewModel.swift */,
-				5A08E4B9240C567400AEEECA /* ComicsCellViewModel.swift */,
 				5A369415240D12BE006BEED3 /* Box.swift */,
 				5A2E81A3240A9C3600718478 /* Views */,
 				5A2E81A4240A9C5600718478 /* Model */,
@@ -201,7 +198,6 @@
 				5A17A0FD240A882600297C35 /* Links.swift in Sources */,
 				5A9EABCA240B84CC0048A20F /* Colors.swift in Sources */,
 				5AA59D5C2408F286007FCAFD /* AppDelegate.swift in Sources */,
-				5A08E4BA240C567400AEEECA /* ComicsCellViewModel.swift in Sources */,
 				5AA59D5E2408F286007FCAFD /* SceneDelegate.swift in Sources */,
 				5A9EABC8240B7B7E0048A20F /* CharacterCell.swift in Sources */,
 				5AA59D70240938A9007FCAFD /* MainViewController.swift in Sources */,

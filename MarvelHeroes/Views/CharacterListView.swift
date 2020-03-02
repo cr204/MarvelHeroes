@@ -17,6 +17,7 @@ class CharacterListView: UIView, UICollectionViewDelegate {
     
     var characters: [CharacterItem] = []
     private var prevSelected: CharacterCell?
+    private var prevSelectedId: Int = 0
     weak var delegate: CharacterListViewDelegate?
     
     let collectionView: UICollectionView = {
@@ -80,6 +81,7 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
         cell.image.loadImageUsingURLString(urlString: characters[indexPath.row].imageURL, fade: true, cornerRadius: 8)
+        cell.imgSelected.isHidden = indexPath.item == self.prevSelectedId ? false : true
         cell.name.text = characters[indexPath.item].name
         return cell
     }
@@ -90,13 +92,14 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell  = collectionView.cellForItem(at: indexPath) as! CharacterCell
-        if prevSelected === cell {
+        if prevSelected == cell {
             return
         } else {
             prevSelected?.isSelected(false)
         }
         cell.isSelected(true)
         prevSelected = cell
+        prevSelectedId = indexPath.item
         delegate?.characterSelected(id: indexPath.row ,uri: characters[indexPath.item].comics.collectionURI)
     }
     
@@ -108,6 +111,12 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
     // line spacing for horizontal
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == characters.count - 1 {
+            print("Load more data")
+        }
     }
 
 }
