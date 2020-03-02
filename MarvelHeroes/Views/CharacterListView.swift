@@ -10,7 +10,7 @@ import UIKit
 
 protocol CharacterListViewDelegate: class {
     func characterSelected(id: Int)
-    func characterSelected(uri: URL)
+    func characterSelected(id: Int, uri: URL)
 }
 
 class CharacterListView: UIView, UICollectionViewDelegate {
@@ -63,8 +63,7 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         let cell  = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! CharacterCell
         cell.isSelected(true)
         prevSelected = cell
-        delegate?.characterSelected(id: 0)
-        delegate?.characterSelected(uri: characters[0].comics.collectionURI)
+        delegate?.characterSelected(id: 0, uri: characters[0].comics.collectionURI)
     }
     
     
@@ -98,7 +97,7 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
         }
         cell.isSelected(true)
         prevSelected = cell
-        delegate?.characterSelected(uri: characters[indexPath.item].comics.collectionURI)
+        delegate?.characterSelected(id: indexPath.row ,uri: characters[indexPath.item].comics.collectionURI)
     }
     
     // line spacing for vertical

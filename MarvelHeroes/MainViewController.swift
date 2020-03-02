@@ -61,6 +61,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         viewModel.comicsDetails.bind {
             self.comicsDetails = $0
+            self.selectedCharId = self.viewModel.lastSelectId
             DispatchQueue.main.async {
                 self.tableView.reloadSections([1], with: .fade)
             }
