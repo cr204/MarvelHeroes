@@ -10,6 +10,14 @@ import UIKit
 
 class ComicsViewCell: UITableViewCell {
     
+    var comicsItem: ComicsItem? {
+        didSet {
+            self.titleLabel.text = self.comicsItem?.name ?? ""
+            self.descLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            self.initViews()
+        }
+    }
+    
     let comicsImage: CustomImageView = {
         let imgView = CustomImageView()
         imgView.layer.cornerRadius = 10
@@ -57,14 +65,6 @@ class ComicsViewCell: UITableViewCell {
         NSLayoutConstraint(item: descLabel, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: -15).isActive = true
         NSLayoutConstraint(item: descLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 10).isActive = true
         
-    }
-    
-    
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     

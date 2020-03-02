@@ -28,5 +28,37 @@ class MainViewModel {
             }
         }
     }
+        
+}
+
+extension MainViewModel: CharacterListViewDelegate {
+        
+    func characterSelected(uri: URL) {
+        print("characterSelectedURI: \(uri)")
+        
+        NetworkService.getJSON(urlString: uri.absoluteString) { (detailsData: ComicsDetailsData?) in
+            print("Details Data Loaded!")
+            
+            guard let statusCode = detailsData?.code else {
+                return
+            }
+            
+            if statusCode != 200 {
+                print("Status Error Code: \(statusCode)")
+            }
+            
+            if let data = detailsData?.data {
+                //completion(data.results)
+                print(data.count)
+            }
+        }
+        
+    }
+    
+    
+    func characterSelected(id: Int) {
+        //
+    }
+
     
 }

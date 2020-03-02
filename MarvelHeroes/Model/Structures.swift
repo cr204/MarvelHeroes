@@ -44,6 +44,7 @@ struct ThumbnailData: Decodable {
 
 struct ComicsData: Decodable {
     let available: Int
+    let collectionURI: URL
     let items: [ComicsItem]
 }
 
@@ -52,9 +53,28 @@ struct ComicsItem: Decodable {
     let resourceURI: URL
 }
 
-struct ComicsDetails: Decodable {
-    let name: String
-    let thumbnail: URL
-    let description: String
-    let date: Date
+
+struct ComicsDetailsData: Decodable {
+    let code: Int
+    let status: String
+    let data: ComicsDetailsDataCollection
+}
+
+struct ComicsDetailsDataCollection: Decodable {
+    let offset: Int
+    let limit: Int
+    let total: Int
+    let count: Int
+    let results: [ComicsDetailsItem]
+}
+
+struct ComicsDetailsItem: Decodable {
+    let title: String
+    let thumbnail: ThumbnailData
+    let description: String?
+//    let date: Date
+    
+    var imageURL: String {
+        return "\(thumbnail.path).\(thumbnail.ext)"
+    }
 }

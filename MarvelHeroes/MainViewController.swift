@@ -45,13 +45,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = self
         tableView.register(ComicsViewCell.self, forCellReuseIdentifier: "ComicsViewCell")
 
-        headerView.delegate = self
+        headerView.delegate = viewModel.self
         
         viewModel.fetchCharactersData { (characters) in
             self.characters = characters
             if let characters = characters {
+                self.headerView.characters = characters
                 DispatchQueue.main.async {
-                    self.headerView.characters = characters
                     self.headerView.initViews()
                     self.setupViews()
                 }
@@ -68,7 +68,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
 }
 
-extension MainViewController: UITableViewDataSource, CharacterListViewDelegate {
+extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -94,9 +94,7 @@ extension MainViewController: UITableViewDataSource, CharacterListViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsViewCell", for: indexPath) as! ComicsViewCell
-        cell.titleLabel.text = characters?[selectedCharId].comics.items[indexPath.row].name ?? ""
-        cell.descLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        cell.initViews()
+        cell.comicsItem = characters?[selectedCharId].comics.items[indexPath.row]
         return cell
     }
     
@@ -105,12 +103,12 @@ extension MainViewController: UITableViewDataSource, CharacterListViewDelegate {
     }
     
     
-    // MARK: Other methods
-    func characterSelected(id: Int) {
-        print("characterSelected: \(id)")
-        selectedCharId = id
-        self.tableView.reloadSections([1], with: .fade)
-    }
+//    // MARK: Other methods
+//    func characterSelected(id: Int) {
+//        selectedCharId = id
+//        print(characters?[id].resourceURI)
+//        self.tableView.reloadSections([1], with: .fade)
+//    }
     
 }
 
