@@ -11,9 +11,7 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDelegate {
 
     private var viewModel = MainViewModel()
-    private var characters: [CharacterItem]?
     private var comicsDetails: [ComicsDetailsItem]?
-    private var selectedCharId: Int = 0
     
     var topSafeArea: CGFloat = 0
     
@@ -39,6 +37,9 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
 
         view.backgroundColor = .white
         
@@ -47,21 +48,10 @@ class MainViewController: UIViewController, UITableViewDelegate {
         tableView.register(ComicsViewCell.self, forCellReuseIdentifier: "ComicsViewCell")
 
         headerView.delegate = viewModel.self
-        
-        viewModel.fetchCharactersData { (characters) in
-            self.characters = characters
-            if let characters = characters {
-                self.headerView.characters = characters
-                DispatchQueue.main.async {
-                    self.headerView.initViews()
-                    self.setupViews()
-                }
-            }
-        }
+        self.setupViews()
         
         viewModel.comicsDetails.bind {
             self.comicsDetails = $0
-            self.selectedCharId = self.viewModel.lastSelectId
             DispatchQueue.main.async {
                 self.tableView.reloadSections([1], with: .fade)
             }
@@ -71,9 +61,31 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setupViews() {
+        
+        if #available(iOS 13.0, *) {
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+            
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = UIColor.white
+            view.addSubview(statusbarView)
+          
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor.constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+          
+        } else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = UIColor.white
+        }
+        
         view.addSubview(tableView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: tableView)
-        view.addConstraintsWithFormat(format: "V:|-\(topSafeArea)-[v0]|", views: tableView)
+        view.addConstraintsWithFormat(format: "V:|-20-[v0]|", views: tableView)
+        
+        
     }
     
     
@@ -90,7 +102,7 @@ extension MainViewController: UITableViewDataSource {
             return headerView
         } else {
             let headerView = CharacterTitleView()
-            headerView.title.text = characters?[selectedCharId].name ?? ""
+            headerView.title.text = viewModel.selectCharacterName
             return headerView
         }
     }

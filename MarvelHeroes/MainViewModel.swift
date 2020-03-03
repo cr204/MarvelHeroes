@@ -8,35 +8,12 @@
 
 import Foundation
 
-class MainViewModel {
+class MainViewModel: CharacterListViewDelegate {
     
     var comicsDetails: Box<[ComicsDetailsItem]?> = Box(nil)
-    var lastSelectId: Int = 0
-    
-    func fetchCharactersData(completion: @escaping ([CharacterItem]?) -> Void) {
+    var selectCharacterName: String = ""
         
-        NetworkService.getJSON(urlString: Links.characterList) { (charactersData: CharactersData?) in
-            print("Data Loaded!")
-            
-            guard let statusCode = charactersData?.code else {
-                return
-            }
-            
-            if statusCode != 200 {
-                print("Status Error Code: \(statusCode)")
-            }
-            
-            if let data = charactersData?.data {
-                completion(data.results)
-            }
-        }
-    }
-        
-}
-
-extension MainViewModel: CharacterListViewDelegate {
-        
-    func characterSelected(id: Int, uri: URL) {
+    func characterSelected(name: String, uri: URL) {
         
         NetworkService.getJSON(urlString: uri.absoluteString) { (detailsData: ComicsDetailsData?) in
             
@@ -49,8 +26,8 @@ extension MainViewModel: CharacterListViewDelegate {
             }
             
             if let data = detailsData?.data {
-                print("Details Data Loaded: \(data.count)")
-                self.lastSelectId = id
+                print("Comics Data Loaded: \(data.count)")
+                self.selectCharacterName = name
                 self.comicsDetails.value = data.results
             }
         }

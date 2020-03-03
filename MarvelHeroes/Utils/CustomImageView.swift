@@ -24,6 +24,9 @@ class CustomImageView: UIImageView {
         
         if let imageForCache = imageCache.object(forKey: (urlString as AnyObject) as! NSString) {
             self.image = imageForCache
+            if cornerRadius > 0 {
+                self.roundCorners([.allCorners], radius: cornerRadius)
+            }
             return
         }
         

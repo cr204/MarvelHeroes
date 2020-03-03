@@ -10,10 +10,12 @@ import UIKit
 
 protocol CharacterListViewDelegate: class {
     func characterSelected(id: Int)
-    func characterSelected(id: Int, uri: URL)
+    func characterSelected(name: String, uri: URL)
 }
 
 class CharacterListView: UIView, UICollectionViewDelegate {
+    
+    private var viewModel = CharacterListViewModel()
     
     var characters: [CharacterItem] = []
     private var prevSelected: CharacterCell?
@@ -41,6 +43,18 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: "CharacterCell")
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+        viewModel.fetchCharactersData(offset: 0, limit: 8) { (characters) in
+            guard let characters = characters else {
+                print("CharacterList.characters: nil")
+                return
+            }
+            self.characters = characters
+            DispatchQueue.main.async {
+                self.initViews()
+            }
+        }
+        
 
     }
     
@@ -50,7 +64,7 @@ class CharacterListView: UIView, UICollectionViewDelegate {
     
     
     
-    func initViews() {
+    private func initViews() {
         self.addSubview(collectionView)
         self.addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         self.addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
@@ -64,7 +78,7 @@ class CharacterListView: UIView, UICollectionViewDelegate {
         let cell  = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! CharacterCell
         cell.isSelected(true)
         prevSelected = cell
-        delegate?.characterSelected(id: 0, uri: characters[0].comics.collectionURI)
+        delegate?.characterSelected(name: characters[0].name, uri: characters[0].comics.collectionURI)
     }
     
     
@@ -100,7 +114,7 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
         cell.isSelected(true)
         prevSelected = cell
         prevSelectedId = indexPath.item
-        delegate?.characterSelected(id: indexPath.row ,uri: characters[indexPath.item].comics.collectionURI)
+        delegate?.characterSelected(name: characters[indexPath.item].name ,uri: characters[indexPath.item].comics.collectionURI)
     }
     
     // line spacing for vertical
@@ -115,9 +129,24 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == characters.count - 1 {
-            print("Load more data")
+            loadMoreData()
         }
     }
 
+    private func loadMoreData() {
+        viewModel.fetchCharactersData(offset: self.characters.count, limit: 10) { (characters) in
+            guard let characters = characters else {
+                print("CharacterList.characters: nil")
+                return
+            }
+            self.characters += characters
+            print("More data loaded: \(self.characters.count)")
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    
 }
 

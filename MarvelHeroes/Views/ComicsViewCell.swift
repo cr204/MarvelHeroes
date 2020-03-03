@@ -22,8 +22,7 @@ class ComicsViewCell: UITableViewCell {
         didSet {
             self.titleLabel.text = self.comicsDetailsItem?.title ?? ""
             self.descLabel.text = self.comicsDetailsItem?.description ?? "No description"
-            self.comicsImage.loadImageUsingURLString(urlString: self.comicsDetailsItem?.imageURL ?? "", fade: false, centerFit: true,cornerRadius: 10)
-//            print("Comics image: \(self.comicsDetailsItem?.imageURL ?? "")")
+            self.comicsImage.loadImageUsingURLString(urlString: self.comicsDetailsItem?.imageURL ?? "", fade: true, centerFit: true,cornerRadius: 10)
             self.initViews()
         }
     }
