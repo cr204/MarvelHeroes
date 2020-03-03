@@ -8,6 +8,8 @@
 
 import UIKit
 
+let imageCache = NSCache<NSString, UIImage>()
+
 class CustomImageView: UIImageView {
 
     var imageUrlString: String?
@@ -20,10 +22,10 @@ class CustomImageView: UIImageView {
         
         self.image = nil
         
-        //        if let imageForCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-        //            self.image = imageForCache
-        //            return
-        //        }
+        if let imageForCache = imageCache.object(forKey: (urlString as AnyObject) as! NSString) {
+            self.image = imageForCache
+            return
+        }
         
         let session = URLSession.shared
         
@@ -48,8 +50,8 @@ class CustomImageView: UIImageView {
                             self.image = imageToCache
                         }
                         
-                        //                        imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
-                        //                        self.image = imageToCache
+                        imageCache.setObject(imageToCache!, forKey: (urlString as AnyObject) as! NSString)
+                                                self.image = imageToCache
                         
                         if cornerRadius > 0 {
 //                            self.roundCorners([.topLeft, .topRight], radius: cornerRadius)
