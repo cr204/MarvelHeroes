@@ -10,7 +10,7 @@ import Foundation
 
 struct NetworkService {
 
-    static func getJSON<T: Decodable>(urlString: String, offset: Int = 0, limit: Int = 10, completionHandler: @escaping (T?) -> Void) {
+    static func getJSON<T: Decodable>(urlString: String, offset: Int = 0, limit: Int = 20, completionHandler: @escaping (T?) -> Void) {
         
         let urlComp = NSURLComponents(string: urlString)!
         urlComp.queryItems = [

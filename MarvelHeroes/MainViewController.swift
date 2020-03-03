@@ -125,12 +125,13 @@ extension MainViewController: UITableViewDataSource {
         return 180
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let comicsDetails = comicsDetails else { return }
-//        if indexPath.row == comicsDetails.count - 1 {
-//            print("Load more data")
-//        }
-//    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let comicsDetails = comicsDetails else { return }
+        if indexPath.row == comicsDetails.count - 1 {
+            print("Load more data")
+            viewModel.loadMoreData()
+        }
+    }
     
         
 }

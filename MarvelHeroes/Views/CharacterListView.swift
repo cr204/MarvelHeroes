@@ -135,10 +135,7 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
 
     private func loadMoreData() {
         viewModel.fetchCharactersData(offset: self.characters.count, limit: 10) { (characters) in
-            guard let characters = characters else {
-                print("CharacterList.characters: nil")
-                return
-            }
+            guard let characters = characters else { return }
             self.characters += characters
             print("More data loaded: \(self.characters.count)")
             DispatchQueue.main.async {
