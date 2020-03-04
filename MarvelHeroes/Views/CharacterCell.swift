@@ -13,6 +13,7 @@ class CharacterCell: UICollectionViewCell {
     let image: CustomImageView = {
         let imgView = CustomImageView()
         imgView.layer.cornerRadius = 8
+        imgView.layer.masksToBounds = true
         imgView.backgroundColor = Colors.lightGray
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView

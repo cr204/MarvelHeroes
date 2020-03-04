@@ -94,7 +94,7 @@ extension CharacterListView: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
-        cell.image.loadImageUsingURLString(urlString: characters[indexPath.row].imageURL, fade: true, cornerRadius: 8)
+        cell.image.loadImageUsingURLString(urlString: characters[indexPath.row].imageURL, fade: true)
         cell.imgSelected.isHidden = indexPath.item == self.prevSelectedId ? false : true
         cell.name.text = characters[indexPath.item].name
         return cell

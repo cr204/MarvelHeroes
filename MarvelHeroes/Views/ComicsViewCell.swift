@@ -20,9 +20,10 @@ class ComicsViewCell: UITableViewCell {
     
     var comicsDetailsItem: ComicsDetailsItem? {
         didSet {
+            self.comicsImage.image = nil
             self.titleLabel.text = self.comicsDetailsItem?.title ?? ""
             self.descLabel.text = self.comicsDetailsItem?.description ?? "No description"
-            self.comicsImage.loadImageUsingURLString(urlString: self.comicsDetailsItem?.imageURL ?? "", fade: true, centerFit: true,cornerRadius: 10)
+            self.comicsImage.loadImageUsingURLString(urlString: self.comicsDetailsItem?.imageURL ?? "", fade: true, centerFit: true)
             self.initViews()
         }
     }
@@ -30,6 +31,7 @@ class ComicsViewCell: UITableViewCell {
     let comicsImage: CustomImageView = {
         let imgView = CustomImageView()
         imgView.layer.cornerRadius = 10
+        imgView.layer.masksToBounds = true
         imgView.backgroundColor = Colors.lightGray
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView

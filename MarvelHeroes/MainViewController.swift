@@ -117,6 +117,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsViewCell", for: indexPath) as! ComicsViewCell
+        cell.comicsImage.layer.cornerRadius = 10
         cell.comicsDetailsItem = comicsDetails?[indexPath.row]
         return cell
     }
@@ -128,7 +129,6 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let comicsDetails = comicsDetails else { return }
         if indexPath.row == comicsDetails.count - 1 {
-            print("Load more data")
             viewModel.loadMoreData()
         }
     }
