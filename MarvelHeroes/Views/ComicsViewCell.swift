@@ -10,14 +10,6 @@ import UIKit
 
 class ComicsViewCell: UITableViewCell {
     
-//    var comicsItem: ComicsItem? {
-//        didSet {
-//            self.titleLabel.text = self.comicsItem?.name ?? ""
-//            self.descLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-//            self.initViews()
-//        }
-//    }
-    
     var comicsDetailsItem: ComicsDetailsItem? {
         didSet {
             self.comicsImage.image = nil

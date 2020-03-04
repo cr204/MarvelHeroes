@@ -68,6 +68,7 @@
 				5A08E4B7240C3FF400AEEECA /* CharacterTitleView.swift */,
 				5A9EABC7240B7B7E0048A20F /* CharacterCell.swift */,
 				5A08E4B3240C0F2900AEEECA /* ComicsViewCell.swift */,
+				5A9EABCC240BD8230048A20F /* CustomImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -83,11 +84,11 @@
 		5A9EABCB240BD7FA0048A20F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A369415240D12BE006BEED3 /* Box.swift */,
 				5A17A0FC240A882600297C35 /* Links.swift */,
 				5A9EABC9240B84CC0048A20F /* Colors.swift */,
 				5A2E819F240A96A900718478 /* Extensions.swift */,
 				5A08E4B5240C35BE00AEEECA /* NetworkService.swift */,
-				5A9EABCC240BD8230048A20F /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -114,9 +115,7 @@
 				5AA59D5B2408F286007FCAFD /* AppDelegate.swift */,
 				5AA59D5D2408F286007FCAFD /* SceneDelegate.swift */,
 				5AA59D6F240938A9007FCAFD /* MainViewController.swift */,
-				5A17A0FE240A8EE700297C35 /* MainViewModel.swift */,
-				5A481F33240E23340018E45A /* CharacterListViewModel.swift */,
-				5A369415240D12BE006BEED3 /* Box.swift */,
+				5AF60F03240FCE480048C305 /* ViewModel */,
 				5A2E81A3240A9C3600718478 /* Views */,
 				5A2E81A4240A9C5600718478 /* Model */,
 				5A9EABCB240BD7FA0048A20F /* Utils */,
@@ -125,6 +124,15 @@
 				5AA59D692408F28A007FCAFD /* Info.plist */,
 			);
 			path = MarvelHeroes;
+			sourceTree = "<group>";
+		};
+		5AF60F03240FCE480048C305 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5A17A0FE240A8EE700297C35 /* MainViewModel.swift */,
+				5A481F33240E23340018E45A /* CharacterListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
