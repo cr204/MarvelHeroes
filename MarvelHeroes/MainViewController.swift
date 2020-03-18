@@ -117,6 +117,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsViewCell", for: indexPath) as! ComicsViewCell
+        cell.comicsImage.image = nil
         cell.comicsImage.layer.cornerRadius = 10
         cell.comicsDetailsItem = comicsDetails?[indexPath.row]
         return cell
